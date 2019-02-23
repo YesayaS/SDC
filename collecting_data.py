@@ -4,16 +4,17 @@ import cv2
 import time
 from getkeys import key_check
 import os
-
-w = [1,0,0,0,0,0,0,0,0]
-s = [0,1,0,0,0,0,0,0,0]
-a = [0,0,1,0,0,0,0,0,0]
-d = [0,0,0,1,0,0,0,0,0]
-wa = [0,0,0,0,1,0,0,0,0]
-wd = [0,0,0,0,0,1,0,0,0]
-sa = [0,0,0,0,0,0,1,0,0]
-sd = [0,0,0,0,0,0,0,1,0]
-nk = [0,0,0,0,0,0,0,0,1]
+#          w a d s 
+W       = [1,0,0,0,0,0,0,0,0,0]
+A       = [0,1,0,0,0,0,0,0,0,0]
+D       = [0,0,1,0,0,0,0,0,0,0]
+SPACE   = [0,0,0,1,0,0,0,0,0,0]
+WA      = [0,0,0,0,1,0,0,0,0,0]
+WD      = [0,0,0,0,0,1,0,0,0,0]
+SPACEa  = [0,0,0,0,0,0,1,0,0,0]
+SPACEd  = [0,0,0,0,0,0,0,1,0,0]
+Q       = [0,0,0,0,0,0,0,0,1,0]
+nk      = [0,0,0,0,0,0,0,0,0,1]
 
 starting_value = 1
 
@@ -28,33 +29,36 @@ while True:
         
         break
 
-
 def keys_to_output(keys):
     '''
     Convert keys to a ...multi-hot... array
-     0  1  2  3  4   5   6   7    8
-    [W, S, A, D, WA, WD, SA, SD, NOKEY] boolean values.
+     0    1    2  3  4   5      6       7    8     9
+    [W, Space, A, D, WA, WD, SpaceA, SpaceD, Q,  NOKEY] boolean values.
     '''
-    output = [0,0,0,0,0,0,0,0,0]
+    output = [0,0,0,0,0,0,0,0,0,0]
 
-    if 'W' in keys and 'A' in keys:
-        output = wa
-    elif 'W' in keys and 'D' in keys:
-        output = wd
-    elif 'S' in keys and 'A' in keys:
-        output = sa
-    elif 'S' in keys and 'D' in keys:
-        output = sd
-    elif 'W' in keys:
-        output = w
-    elif 'S' in keys:
-        output = s
+    if 'W' in keys:
+        output = W
+    elif 'SPACE' in keys:
+        output = SPACE
     elif 'A' in keys:
-        output = a
+        output = A
     elif 'D' in keys:
-        output = d
+        output = D
+    elif 'Q' in keys:
+        output = Q
+        
+    elif 'WA' in keys or 'AW' in keys:
+        output = WA
+    elif 'WD' in keys or 'DW' in keys:
+        output = WD
+    elif 'SPACEA' in keys or 'ASPACE' in keys:
+        output = SPACEa
+    elif 'SPACED' in keys or 'DSPACE' in keys:
+        output = SPACEd
+        
     else:
-        output = nk
+        output = nk        
     return output
 
 
