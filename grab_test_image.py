@@ -36,12 +36,12 @@ def grab_screen(region=None):
 #cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     return img
 
-last_time = time.time()
-while True:
-    screen = grab_screen(region = (-1, -1, 1000, 500))
-    cv2.imshow('window', screen)
-    print('Loop took {} seconds'.format(time.time()-last_time))
-    last_time = time.time()
-    if cv2.waitKey(25) & 0xFF == ord('q'):
-        cv2.destroyAllWindows()
-        break
+##last_time = time.time()
+##while True:
+##    screen = grab_screen(region = (-1, -1, 1000, 500))
+##    cv2.imshow('window', screen)
+##    print('Loop took {} seconds'.format(time.time()-last_time))
+##    last_time = time.time()
+##    if cv2.waitKey(25) & 0xFF == ord('q'):
+##        cv2.destroyAllWindows()
+##        break
